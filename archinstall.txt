@@ -1,0 +1,35 @@
+pacstrap -i /mnt base base-devel linux linux-firmware sudo nano
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+
+arch-chroot /mnt
+
+nano /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+ln -sf /usr/share/zoneinfot/Asia/Dhaka /etc/localtime
+timedatectl set-ntp true
+hwclock --systohc
+echo badhon > /etc/hostname
+nano /etc/hosts
+#
+127.0.0.1	localhost
+::1		localhost
+127.0.1.1 	badhon.localdomain badhon
+#
+
+passwd
+useradd -m -G wheel bd26
+passwd bd26
+EDITOR=nano visudo
+pacman -S grub
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+sudo pcman -S networkmanager
+systemctl enable NetworkManager
+exit
+umount -R /mnt
+reboot
+
+pacman -S xorg git lightdm  lightdm-gtk-greeter
+systemctl enable lightdm

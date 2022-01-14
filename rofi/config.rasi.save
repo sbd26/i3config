@@ -1,0 +1,4 @@
+configuration {
+	themes: "~/.config/rofi/themes/";
+
+}
