@@ -12,7 +12,7 @@ exec --no-startup-id nitrogen --restore
 #i3 radius
 
 # Only enable outer gaps when there is exactly one container
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 4
 smart_gaps inverse_outer
 smart_gaps on
 gaps inner 5
@@ -114,12 +114,12 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: "
 set $ws2 "2: "
-set $ws3 "3:"
+set $ws3 "3:DC "
 set $ws4 "4: "
-set $ws5 "5: "
+set $ws5 "5: "
 set $ws6 "6:"
-set $ws7 "7"
-set $ws8 "8"
+set $ws7 "7:"
+set $ws8 "8: "
 set $ws9 "9: "
 set $ws10 "10"
 
@@ -193,16 +193,17 @@ bindsym $mod+shift+f exec firefox
 
 #screen_resulation
 
-exec_always xrandr --output Virtual-1 --primary --mode 1360x768 --pos 0x0 --rotate normal --output Virtual-2 --off --output Virtual-3 --off --output Virtual-4 --off --output Virtual-5 --off --output Virtual-6 --off --output Virtual-7 --off --output Virtual-8 --off
+exec_always xrandr --output DP1 --off --output DP2 --off --output HDMI1 --off --output HDMI2 --off --output VGA1 --mode 1366x768 --pos 0x0 --rotate normal --output VIRTUAL1 --off
+
 
 bindsym $mod+r mode "resize"
 
 
 
 # Pulse Audio controls
-bindsym ctrl+Up exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym ctrl+Down exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym ctrl+m exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+bindsym ctrl+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 #screenshot
 bindsym shift+Print exec flameshot full -p /home/bd26/Picture
 bindsym Print exec flameshot gui
@@ -213,15 +214,19 @@ bindsym Print exec flameshot gui
 
 assign [class="firefox"] $ws1
 assign [class="Geany"] $ws1
-assign [class="Alacritty"] $ws2
+assign [class="Xfce4-terminal"] $ws2
 assign [class="TelegramDesktop"] $ws4
-assign [class="vlc"] $ws5
+assign [class="vlc"] $ws8
 assign [class="Pavucontrol"] $ws9
-#exec_always pavucontrol
-#exec_always firefox
-#exec_always telegram-desktop
-#exec_always geany
-#exec_always alacritty
+assign [class="zoom"] $ws8
+assign [class="discord"] $ws3
+assign [class="Org.gnome.Nautilus"] $ws5
+assign [class="Thunar"] $ws5
+
+exec_always telegram-desktop
+exec_always discord
+exec_always firefox
+exec_always Xfce4-terminal
 
 set $yellow #FFFF00
 set $red 	#FF0000
