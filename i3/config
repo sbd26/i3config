@@ -7,7 +7,7 @@ set $mod Mod4
 #font and wallpaper 
 font pango:Lucida Mac 12
 exec --no-startup-id nitrogen --restore
-
+#exec --no-startup-id ~/gitclone/ab/scripts/loop_pngs.sh ~/anime_rain
 
 #i3 radius
 
@@ -15,9 +15,9 @@ exec --no-startup-id nitrogen --restore
 for_window [class=".*"] border pixel 4
 smart_gaps inverse_outer
 smart_gaps on
-gaps inner 5
-gaps outer 5
-gaps horizontal 5
+gaps inner 4
+gaps outer 4
+gaps horizontal 4
 border_radius 4
 smart_borders on
 smart_borders no_gaps
@@ -121,7 +121,7 @@ set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8: "
 set $ws9 "9: "
-set $ws10 "10"
+set $ws10 "10:"
 
 # switch to workspace
 bindsym $mod+1 workspace  $ws1
@@ -210,6 +210,8 @@ bindsym Print exec flameshot gui
 
 
 
+
+
 #startup_application 
 
 assign [class="firefox"] $ws1
@@ -221,12 +223,14 @@ assign [class="Pavucontrol"] $ws9
 assign [class="zoom"] $ws8
 assign [class="discord"] $ws3
 assign [class="Org.gnome.Nautilus"] $ws5
-assign [class="Thunar"] $ws5
+assign [class="Gnome-music"] $ws6
+assign [class="Caprine"] $ws5
+assign [class="Clementine"] $ws6
 
-exec_always telegram-desktop
-exec_always discord
-exec_always firefox
-exec_always Xfce4-terminal
+#exec_always telegram-desktop
+#exec_always discord
+#exec_always firefox
+#exec_always Xfce4-terminal
 
 set $yellow #FFFF00
 set $red 	#FF0000
